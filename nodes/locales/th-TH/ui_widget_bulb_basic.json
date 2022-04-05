@@ -1,0 +1,13 @@
+{
+    "ui_widget_bulb_basic": {
+        "label": {
+            "name": "Name",
+            "title": "ชื่อเรื่อง"
+        },
+        "errors": {
+            "no-group": "โปรดใส่ group สำหรับ widget",
+            "payloadRequired": "ต้องการค่า payload",
+            "payloadInvalid": "payload ไม่ถูกต้อง"
+        }
+    }
+}

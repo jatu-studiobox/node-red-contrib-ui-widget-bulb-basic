@@ -1,0 +1,13 @@
+{
+    "ui_widget_bulb_basic": {
+        "label": {
+            "name": "Name",
+            "title": "Title"
+        },
+        "errors": {
+            "no-group": "Please enter group for widget",
+            "payloadRequired": "payload is required",
+            "payloadInvalid": "payload is invalid"
+        }
+    }
+}

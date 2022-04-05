@@ -1,0 +1,43 @@
+{
+  "name": "@studiobox/node-red-contrib-ui-widget-bulb-basic",
+  "version": "0.1.0",
+  "description": "Easy to use Node-RED UI Widget on Node-RED Dashboard for easy to display turn on/off virtual bulb.",
+  "author": "Jatu StudioBox <inno.studiobox@gmail.com>",
+  "license": "Apache-2.0",
+  "url" : "https://github.com/jatu-studiobox/node-red-contrib-ui-widget-bulb-basic/issues",
+  "email" : "inno.studiobox@gmail.com",
+  "homepage": "https://github.com/jatu-studiobox/node-red-contrib-ui-widget-bulb-basic#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jatu-studiobox/node-red-contrib-ui-widget-bulb-basic.git"
+  },
+  "engines": {
+    "node": "^12.0.0 || ^14.19.0 || >=16.0.0"
+  },
+  "keywords": [
+    "node-red",
+    "node-red-dashboard",
+    "ui-widget",
+    "dashboard-ui",
+    "bulb",
+    "display-bulb",
+    "ui-widget-bulb",
+    "turn-on-off-bulb",
+    "widget"
+  ],
+  "node-red": {
+    "version": ">=2.0.0",
+    "nodes": {
+      "ui_widget_thermometer": "nodes/ui_widget_bulb_basic.js"
+    }
+  },
+  "maintainers": [
+    {
+      "name": "Jatu StudioBox",
+      "email": "inno.studiobox@gmail.com"
+    }
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}

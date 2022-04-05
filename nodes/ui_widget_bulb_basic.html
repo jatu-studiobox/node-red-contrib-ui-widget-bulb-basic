@@ -1,0 +1,72 @@
+<script type="text/html" data-template-name="ui_widget_bulb_basic">
+    <div class="form-row" id="template-row-group">
+        <label for="node-input-group"><i class="fa fa-table"></i> Group</span></label>
+        <input type="text" id="node-input-group">
+    </div>
+    <div class="form-row" id="template-row-size">
+        <label><i class="fa fa-object-group"></i> Size</span></label>
+        <input type="hidden" id="node-input-width">
+        <input type="hidden" id="node-input-height">
+        <button class="editor-button" id="node-input-size"></button>
+    </div>
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> <span data-i18n="ui_widget_bulb_basic.label.name"></span></label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-row">
+        <label for="node-input-title"><i class="fa fa-tag"></i> <span data-i18n="ui_widget_bulb_basic.label.title"></span></label>
+        <input type="text" id="node-input-title" placeholder="Title">
+    </div>
+</script>
+<script type="text/javascript">
+    RED.nodes.registerType('ui_widget_bulb_basic', {    // type MUST start with ui_
+        category: 'dashboard',
+        color: '#ac7705',
+        defaults: {
+            group: {
+                type: 'ui_group',
+                required: true
+            },
+            order: { value: 0 },
+            width: {
+                value: 0,
+                validate: function (v) {
+                    let valid = true;
+                    let width = v || 0;
+                    let currentGroup = $('#node-input-group').val() || this.group;
+                    let groupNode = RED.nodes.node(currentGroup);
+                    valid = !groupNode || +width <= +groupNode.width;
+                    $("#node-input-size").toggleClass("input-error", !valid);
+                    return valid;
+                }
+            },
+            height: {
+                value: 0
+            },
+            name: {
+                value: ''
+            },
+            title: {
+                value: '',
+                required: true
+            }
+        },
+        inputs: 1,
+        outputs: 0,
+        icon: "font-awesome/fa-lightbulb-o",
+        paletteLabel: "bulb basic",
+        label: function () {
+            return this.name || "bulb basic";
+        },
+        labelStyle: function () {
+            return this.name ? "node_label_italic" : "";
+        },
+        oneditprepare: function () {
+            $("#node-input-size").elementSizer({
+                width: "#node-input-width",
+                height: "#node-input-height",
+                group: "#node-input-group"
+            });
+        }
+    });
+</script>
