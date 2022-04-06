@@ -1,0 +1,78 @@
+[
+    {
+        "id": "c1f4792484839d04",
+        "type": "tab",
+        "label": "UI Widget Bulb Basic Example",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "d6892dedebb5827f",
+        "type": "ui_switch",
+        "z": "c1f4792484839d04",
+        "name": "",
+        "label": "switch",
+        "tooltip": "",
+        "group": "fe8c8f98cc2d3635",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 250,
+        "y": 80,
+        "wires": [
+            [
+                "c3fb5a85797d5666"
+            ]
+        ]
+    },
+    {
+        "id": "c3fb5a85797d5666",
+        "type": "ui_widget_bulb_basic",
+        "z": "c1f4792484839d04",
+        "group": "fe8c8f98cc2d3635",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "title": "Kitchen",
+        "color": "#fedfb3",
+        "x": 440,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "fe8c8f98cc2d3635",
+        "type": "ui_group",
+        "name": "Home",
+        "tab": "30117d749770344e",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "30117d749770344e",
+        "type": "ui_tab",
+        "name": "Home",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]

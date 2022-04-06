@@ -1,28 +1,20 @@
 <script type="text/html" data-help-name="ui_widget_bulb_basic">
-    <p>A Node-RED Dashboard UI Widget node to display a thermometer with temperature data.</p>
+    <p>A Node-RED Dashboard UI Widget node to display virtual bulb (for turn on/off).</p>
     <h3>Node Settings</h3>
     <dl class="message-properties">
         <dt>Title<span class="property-type">string</span></dt>
-        <dd>Thermometer's title</dd>
-        <dt>Top Area Color<span class="property-type">rgb color</span></dt>
-        <dd>Thermometer's mercury color at top area</dd>
-        <dt>Middle Area Color<span class="property-type">rgb color</span></dt>
-        <dd>Thermometer's mercury color at middle area</dd>
-        <dt>Bottom Area Color<span class="property-type">rgb color</span></dt>
-        <dd>Thermometer's mercury color at bottom area</dd>
-        <dt>Min. Temperature<span class="property-type">integer</span></dt>
-        <dd>Mininum temperature of thermometer for display - default 0</dd>
-        <dt>Max. Temperature<span class="property-type">integer</span></dt>
-        <dd>Maxinum temperature of thermometer for display - default 100</dd>
-        <dt>Unit<span class="property-type">°C|°F</span></dt>
-        <dd>Unit for display</dd>
-        <dt>Scale<span class="property-type">normal|small</span></dt>
-        <dd>Thermometer size for display, includes 'normal' and 'small'</dd>
+        <dd>Bulb's title</dd>
+        <dt>Color<span class="property-type">rgb color</span></dt>
+        <dd>Bulb color for display (Only 3 colors)</dd>
+        <dd><span style="border: 1px solid #000; display: inline-block; width: 18px; height: 18px; background-color: #ffffff;">&nbsp;</span> Daylight</dd>
+        <dd><span style="border: 1px solid #000; display: inline-block; width: 18px; height: 18px; background-color: #feefd8;">&nbsp;</span> Coolwhite</dd>
+        <dd><span style="border: 1px solid #000; display: inline-block; width: 18px; height: 18px; background-color: #fedfb3;">&nbsp;</span> Warmwhite</dd>
     </dl>
     <h3>Inputs</h3>
     <dl class="message-properties">
-        <dt>payload<span class="property-type">integer</span></dt>
-        <dd>The temperature value to display</dd>
+        <dt>payload<span class="property-type">boolean</span></dt>
+        <dd>true: for turn on bulb.</dd>
+        <dd>false: for turn off bulb.</dd>
     </dl>
     <h3>More details</h3>
     <p>See usage examples at Node-RED Import menu. Examples at '@studiobox/node-red-contrib-ui-widget-bulb-basic'.</p>
