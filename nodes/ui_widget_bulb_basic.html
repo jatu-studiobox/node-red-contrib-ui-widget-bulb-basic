@@ -1,3 +1,12 @@
+<style>
+    .picked-up-color {
+        border: 1px solid #000;
+        display: inline-block; 
+        width: 20px; 
+        height: 20px;
+        padding: 3px;
+    }
+</style>
 <script type="text/html" data-template-name="ui_widget_bulb_basic">
     <div class="form-row" id="template-row-group">
         <label for="node-input-group"><i class="fa fa-table"></i> Group</span></label>
@@ -16,6 +25,14 @@
     <div class="form-row">
         <label for="node-input-title"><i class="fa fa-tag"></i> <span data-i18n="ui_widget_bulb_basic.label.title"></span></label>
         <input type="text" id="node-input-title" placeholder="Title">
+    </div>
+    <div class="form-row">
+        <label for="node-input-title"><i class="fa fa-tag"></i> <span data-i18n="ui_widget_bulb_basic.label.color"></span></label>
+        <span class="button-group">
+            <button type="button" class="red-ui-button toggle selected my-button-color" value="#ffffff">Daylight</button><button type="button" class="red-ui-button toggle my-button-color" value="#feefd8">Coolwhite</button><button type="button" class="red-ui-button toggle my-button-color" value="#fedfb3">Warmwhite</button>
+        </span>
+        <span class="picked-up-color" id="picked-up-color">&nbsp;</span>
+        <input type="hidden" id="node-input-color" />
     </div>
 </script>
 <script type="text/javascript">
@@ -49,6 +66,10 @@
             title: {
                 value: '',
                 required: true
+            },
+            color: {
+                value: '#ffffff',
+                required: true
             }
         },
         inputs: 1,
@@ -66,6 +87,20 @@
                 width: "#node-input-width",
                 height: "#node-input-height",
                 group: "#node-input-group"
+            });
+            $(".my-button-color").on("click", function() {
+                $(".my-button-color").removeClass("selected");
+                $(this).addClass("selected");
+                $("#node-input-color").val($(this).attr("value"));
+                $("#picked-up-color").css('background-color', $(this).attr("value"));
+            });
+            // set color clicked button follow property
+            $(".my-button-color").removeClass("selected");
+            $(".my-button-color").each(function (i, obj) {
+                if ($(obj).attr("value") === $("#node-input-color").val()) {
+                    $(obj).addClass("selected");
+                    $("#picked-up-color").css('background-color', $("#node-input-color").val());
+                }
             });
         }
     });

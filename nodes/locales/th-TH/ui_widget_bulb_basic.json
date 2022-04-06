@@ -2,7 +2,8 @@
     "ui_widget_bulb_basic": {
         "label": {
             "name": "Name",
-            "title": "ชื่อเรื่อง"
+            "title": "ชื่อเรื่อง",
+            "color": "สีหลอดไฟ"
         },
         "errors": {
             "no-group": "โปรดใส่ group สำหรับ widget",

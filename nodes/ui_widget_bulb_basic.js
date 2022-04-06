@@ -1,5 +1,6 @@
 module.exports = function (RED) {
     function HTML(config) {
+        const bulbColor = config.color;
         let displayTitle = "";
         if (config.title !== "") {
             displayTitle = "<div style='font-size: 1.2em;font-weight:bold;text-align: center;margin-top: 10px'>" + config.title + "</div>";
@@ -25,25 +26,25 @@ module.exports = function (RED) {
     z-index: 2;
 }
 .on .bulb {
-    background: #fff;
-    box-shadow: 0 0 50px #fff,
-    0 0 100px #fff,
-    0 0 150px #fff,
-    0 0 200px #fff,
+    background: ` + bulbColor + `;
+    box-shadow: 0 0 50px ` + bulbColor + `,
+    0 0 100px ` + bulbColor + `,
+    0 0 150px ` + bulbColor + `,
+    0 0 200px ` + bulbColor + `,
 }
 .bulb::before {
     content: '';
     position: absolute;
-    top: -50px;
+    top: -25px;
     left: 22.5px;
     width: 35px;
-    height: 80px;
+    height: 40px;
     background: #444;
-    border-top: 30px solid #000;
+    border-top: 20px solid #000;
     border-radius: 10px;
 }
 .on .bulb::before {
-    background: #fff;
+    background: ` + bulbColor + `;
 }
 .on .bulb::after {
     content: '';
@@ -53,39 +54,37 @@ module.exports = function (RED) {
     transform: translate(-50%, -50%);
     width: 120px;
     height: 120px;
-    background: #fff;
+    background: ` + bulbColor + `;
     border-radius: 50%;
     filter: blur(40px);
 }
 .bulb span:nth-child(1) {
     position: absolute;
-    top: -16px;
-    left: -4px;
+    top: -17px;
+    left: 0px;
     display: block;
-    width: 30px;
-    height: 30px;
+    width: 23px;
+    height: 31px;
     background: transparent;
-    transform: rotate(342deg);
     border-bottom-right-radius: 40px;
-    box-shadow: 20px 20px 0 10px #444;
+    box-shadow: 14px 14px 0 0px #444;
 }
 .on .bulb span:nth-child(1) {
-    box-shadow: 20px 20px 0 10px #fff;
+    box-shadow: 14px 14px 0 0px ` + bulbColor + `;
 }
 .bulb span:nth-child(2) {
     position: absolute;
-    top: -16px;
-    right: -4px;
+    top: -17px;
+    right: 0px;
     display: block;
-    width: 30px;
-    height: 30px;
+    width: 23px;
+    height: 31px;
     background: transparent;
-    transform: rotate(17deg);
     border-bottom-left-radius: 40px;
-    box-shadow: -20px 20px 0 10px #444;
+    box-shadow: -14px 14px 0 0px #444;
 }
 .on .bulb span:nth-child(2) {
-    box-shadow: -20px 20px 0 10px #fff;
+    box-shadow: -14px 14px 0 0px ` + bulbColor + `;
 }
 .wire {
     position: absolute;
