@@ -1,6 +1,6 @@
 {
   "name": "@studiobox/node-red-contrib-ui-widget-bulb-basic",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Easy to use Node-RED UI Widget on Node-RED Dashboard for easy to display virtual bulb (for turn on/off).",
   "author": "Jatu StudioBox <inno.studiobox@gmail.com>",
   "license": "Apache-2.0",
