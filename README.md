@@ -14,7 +14,7 @@
 3. Install this package at user data directory `~/.node-red`
 
 ```
-@studiobox/node-red-contrib-ui-widget-bulb-basic
+npm install @studiobox/node-red-contrib-ui-widget-bulb-basic
 ```
 
 4. Start Node-RED 
