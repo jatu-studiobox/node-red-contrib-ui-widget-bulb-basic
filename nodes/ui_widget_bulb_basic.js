@@ -1,5 +1,6 @@
 module.exports = function (RED) {
     function HTML(config) {
+        const configAsJson = JSON.stringify(config);
         const bulbColor = config.color;
         let displayTitle = "";
         if (config.title !== "") {
@@ -101,7 +102,7 @@ module.exports = function (RED) {
     text-align: center;
 }
 </style>
-<div id="item_{{$id}}">
+<div id="bulb_item_{{$id}}">
     <div>
         <div class="light">
             <div class="wire"></div>
@@ -111,6 +112,7 @@ module.exports = function (RED) {
             </div>
         </div>
     </div>` + displayTitle + `<span class="error" style="visibility:hidden;"></span>
+    <input type='hidden' ng-init='init(` + configAsJson + `)'>
 </div>`;
         return html;
     }
@@ -207,29 +209,63 @@ module.exports = function (RED) {
                         }
                     },
                     initController: function ($scope) {
+                        let divWidget;
+                        // Add scope variables for switching tab
+                        $scope.inited = false;
+                        $scope.status = false;
                         $scope.flag = true;     // not sure if this is needed?
+
+                        const setLight = function (bulbWidget, status, isErr, errMessage) {
+                            // Gather light's bulb
+                            const light = $(bulbWidget).find(".light");
+                            
+                            // Hide error section
+                            const error = $(bulbWidget).find(".error");
+                            $(error).text("");
+                            $(error).css('visibility', 'hidden');
+
+                            // Validate error
+                            if (isErr) {
+                                // set display error section
+                                $(error).text("Error: " + errMessage);
+                                $(error).css('visibility', 'visible');
+                                // light off for error
+                                $(light).removeClass("on");
+                            } else {
+                                // set light status
+                                if (status) {
+                                    $(light).addClass("on");
+                                } else {
+                                    $(light).removeClass("on");
+                                }
+                            }
+                        }
+                        // init widget
+                        $scope.init = function (config) {
+                            $scope.config = config;
+                            divWidget = '#bulb_item_' + $scope.$eval('$id');
+                            let stateCheck = setInterval(function () {
+                                if (document.querySelector(divWidget) && $scope.status) {
+                                    clearInterval(stateCheck);
+                                    $scope.inited = true;
+                                    setLight(divWidget, $scope.status, false, "");
+                                    $scope.percentHumid = false;
+                                }
+                            }, 40);
+                        };
+                        // watch payload message
                         $scope.$watch('msg', function (msg) {
                             if (!msg) {
                                 // Ignore undefined msg
                                 return;
                             }
-                            // Gathering payload
-                            const payload = msg.payload;
-                            const bulbWidget = document.getElementById("item_" + $scope.$eval('$id'));
-                            const error = $(bulbWidget).find(".error");
-                            $(error).text("");
-                            $(error).css('visibility', 'hidden');
-                            // Validate payload
-                            if (msg.isErr) {
-                                $(error).text("Error: " + msg.errMessage);
-                                $(error).css('visibility', 'visible');
-                            } else {
-                                const light = $(bulbWidget).find(".light");
-                                if (payload) {
-                                    $(light).addClass("on");
-                                } else {
-                                    $(light).removeClass("on");
+                            if (msg && msg.hasOwnProperty("payload") && typeof msg.payload === 'boolean') {
+                                if ($scope.inited === false) {
+                                    // Gathering payload
+                                    $scope.status = msg.payload;
+                                    return;
                                 }
+                                setLight(divWidget, msg.payload, msg.isErr, msg.errMessage);
                             }
                         });
                     }
