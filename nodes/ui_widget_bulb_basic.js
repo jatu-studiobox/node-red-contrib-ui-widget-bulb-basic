@@ -2,6 +2,21 @@ module.exports = function (RED) {
     function HTML(config) {
         const configAsJson = JSON.stringify(config);
         const bulbColor = config.color;
+        const scale = config.scale;
+        let blubScale = "";
+        let lightHeight = "200px";
+        let wireBottom = "50%";
+        if (typeof scale === 'undefined' || scale === null) {
+          blubScale = "bulb";
+        } else {
+          if (scale === "small") {
+            blubScale = "bulbsmall";
+            lightHeight = "100px";
+            wireBottom = "75%";
+          } else {
+            blubScale = "bulb";
+          }
+        }
         let displayTitle = "";
         if (config.title !== "") {
             displayTitle = "<div style='font-size: 1.2em;font-weight:bold;text-align: center;margin-top: 10px'>" + config.title + "</div>";
@@ -12,7 +27,7 @@ module.exports = function (RED) {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 200px;
+    height: ` + lightHeight + `;
     background: #222;
 }
 .on {
@@ -87,10 +102,79 @@ module.exports = function (RED) {
 .on .bulb span:nth-child(2) {
     box-shadow: -14px 14px 0 0px ` + bulbColor + `;
 }
+.bulbsmall {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  background: #444;
+  border-radius: 50%;
+  z-index: 2;
+}
+.on .bulbsmall {
+  background: ` + bulbColor + `;
+  box-shadow: 0 0 25px ` + bulbColor + `,
+    0 0 50px ` + bulbColor + `,
+    0 0 75px ` + bulbColor + `,
+    0 0 100px ` + bulbColor + `,
+}
+.bulbsmall::before {
+  content: '';
+  position: absolute;
+  top: -15px;
+  left: 11.25px;
+  width: 17.5px;
+  height: 20px;
+  background: #444;
+  border-top: 10px solid #000;
+  border-radius: 5px;
+}
+.on .bulbsmall::before {
+  background: ` + bulbColor + `;
+}
+.on .bulbsmall::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60px;
+  height: 60px;
+  background: ` + bulbColor + `;
+  border-radius: 50%;
+  filter: blur(25px);
+}
+.bulbsmall span:nth-child(1) {
+  position: absolute;
+  top: -19px;
+  left: -10px;
+  display: block;
+  width: 21px;
+  height: 34px;
+  background: transparent;
+  border-bottom-right-radius: 40px;
+  box-shadow: 14px 14px 0 0px #444;
+}
+.on .bulbsmall span:nth-child(1) {
+  box-shadow: 14px 14px 0 0px ` + bulbColor + `;
+}
+.bulbsmall span:nth-child(2) {
+  position: absolute;
+  top: -19px;
+  right: -10px;
+  display: block;
+  width: 21px;
+  height: 34px;
+  background: transparent;
+  border-bottom-left-radius: 40px;
+  box-shadow: -14px 14px 0 0px #444;
+}
+.on .bulbsmall span:nth-child(2) {
+  box-shadow: -14px 14px 0 0px ` + bulbColor + `;
+}
 .wire {
     position: absolute;
     left: calc(50% - 2px);
-    bottom: 50%;
+    bottom: ` + wireBottom + `;
     width: 4px;
     height: 60vh;
     background: #000;
@@ -106,7 +190,7 @@ module.exports = function (RED) {
     <div>
         <div class="light">
             <div class="wire"></div>
-            <div class="bulb">
+            <div class="` + blubScale + `">
                 <span></span>
                 <span></span>
             </div>

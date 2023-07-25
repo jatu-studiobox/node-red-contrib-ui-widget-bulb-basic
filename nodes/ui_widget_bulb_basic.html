@@ -34,6 +34,10 @@
         <span class="picked-up-color" id="picked-up-color">&nbsp;</span>
         <input type="hidden" id="node-input-color" />
     </div>
+    <div class="form-row">
+      <label for="node-input-scale"><i class="fa fa-expand"></i> <span data-i18n="ui_widget_bulb_basic.label.scale"></span></label>
+      <input type="text" id="node-input-scale"/>
+  </div>
 </script>
 <script type="text/javascript">
     RED.nodes.registerType('ui_widget_bulb_basic', {    // type MUST start with ui_
@@ -70,6 +74,9 @@
             color: {
                 value: '#ffffff',
                 required: true
+            },
+            scale: {
+                value: "normal"
             }
         },
         inputs: 1,
@@ -101,6 +108,17 @@
                     $(obj).addClass("selected");
                     $("#picked-up-color").css('background-color', $("#node-input-color").val());
                 }
+            });
+            $("#node-input-scale").typedInput({
+                types: [
+                    {
+                        value: "scale",
+                        options: [
+                            { value: "normal", label: "Normal" },
+                            { value: "small", label: "Small" }
+                        ]
+                    }
+                ]
             });
         }
     });

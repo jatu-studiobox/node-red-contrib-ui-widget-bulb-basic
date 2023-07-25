@@ -3,7 +3,8 @@
         "label": {
             "name": "Name",
             "title": "Title",
-            "color": "Color"
+            "color": "Color",
+            "scale": "Scale"
         },
         "errors": {
             "no-group": "Please enter group for widget",

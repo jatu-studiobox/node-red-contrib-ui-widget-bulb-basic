@@ -3,7 +3,8 @@
         "label": {
             "name": "Name",
             "title": "ชื่อเรื่อง",
-            "color": "สีหลอดไฟ"
+            "color": "สีหลอดไฟ",
+            "scale": "ขนาดแสดงผล"
         },
         "errors": {
             "no-group": "โปรดใส่ group สำหรับ widget",
